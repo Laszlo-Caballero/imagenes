@@ -3,20 +3,30 @@ import FormImage from "@/components/form/Form";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CloudinaryResponse } from "@/interface/res";
 import cloudinary from "@/lib/cloudinary";
+import axios from "axios";
 import Image from "next/image";
 
 export default async function Home() {
-  const res = await cloudinary.api.resources({
-    max_results: 1000,
-  });
+  let images: CloudinaryResponse[] = [];
 
-  const images: CloudinaryResponse[] = res.data;
+  try {
+    const result = await cloudinary.api.resources({
+      type: "upload",
+      prefix: "", // o pon el folder si usas uno, ej: 'my_uploads/'
+      resource_type: "image",
+      max_results: 10000,
+    });
+
+    images = result.resources;
+  } catch (err) {
+    console.error("Cloudinary error:", err);
+  }
   return (
     <div className="w-full min-h-screen p-12 bg-gray-100 flex flex-col items-center justify-center">
       <FormImage />
 
       <div className="grid grid-cols-4 gap-2 mt-8 w-full">
-        {images?.map((image) => {
+        {images.map((image) => {
           return (
             <Card key={image.public_id}>
               <CardHeader>
