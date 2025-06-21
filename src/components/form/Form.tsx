@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { toast } from "sonner";
 import { useState } from "react";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 const formSchema = z.object({
   image: z.instanceof(File).refine((file) => file.size > 0, {
     message: "Image is required",
@@ -15,7 +15,9 @@ const formSchema = z.object({
 });
 
 export default function FormImage() {
-  const form = useForm<z.infer<typeof formSchema>>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
 
   const [loading, setLoading] = useState(false);
 
