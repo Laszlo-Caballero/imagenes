@@ -2,19 +2,21 @@ import Click from "@/components/click";
 import FormImage from "@/components/form/Form";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CloudinaryResponse } from "@/interface/res";
-import axios from "axios";
-import { LucideCopy } from "lucide-react";
+import cloudinary from "@/lib/cloudinary";
 import Image from "next/image";
 
 export default async function Home() {
-  const res = await axios.get(`${process.env.BASE_URL}/api`);
+  const res = await cloudinary.api.resources({
+    max_results: 1000,
+  });
+
   const images: CloudinaryResponse[] = res.data;
   return (
     <div className="w-full min-h-screen p-12 bg-gray-100 flex flex-col items-center justify-center">
       <FormImage />
 
       <div className="grid grid-cols-4 gap-2 mt-8 w-full">
-        {images.map((image) => {
+        {images?.map((image) => {
           return (
             <Card key={image.public_id}>
               <CardHeader>

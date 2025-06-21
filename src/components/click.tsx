@@ -9,7 +9,11 @@ export default function Click({ url }: { url?: string }) {
       <LucideCopy
         className="cursor-pointer"
         onClick={() => {
-          url && navigator.clipboard.writeText(url);
+          if (!url) {
+            toast.error("No hay URL para copiar");
+            return;
+          }
+          navigator.clipboard.writeText(url);
           toast.success("URL copiada al portapapeles");
         }}
       />

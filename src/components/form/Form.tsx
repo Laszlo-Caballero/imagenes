@@ -28,7 +28,7 @@ export default function FormImage() {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api`, formData);
       window.location.reload(); // Reload the page to see the new image
-    } catch (error) {
+    } catch {
       toast.error("Error uploading image");
     } finally {
       setLoading(false);
