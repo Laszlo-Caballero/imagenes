@@ -6,6 +6,8 @@ import cloudinary from "@/lib/cloudinary";
 import Image from "next/image";
 export const dynamic = "force-dynamic";
 export default async function Home() {
+  console.log("Rendering server-side:", new Date().toISOString());
+
   let images: CloudinaryResponse[] = [];
 
   try {
