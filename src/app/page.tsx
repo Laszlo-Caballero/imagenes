@@ -3,7 +3,6 @@ import FormImage from "@/components/form/Form";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CloudinaryResponse } from "@/interface/res";
 import cloudinary from "@/lib/cloudinary";
-import axios from "axios";
 import Image from "next/image";
 
 export default async function Home() {
