@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CloudinaryResponse } from "@/interface/res";
 import cloudinary from "@/lib/cloudinary";
 import Image from "next/image";
-
+export const dynamic = "force-dynamic";
 export default async function Home() {
   let images: CloudinaryResponse[] = [];
 
