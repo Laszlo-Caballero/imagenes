@@ -2,6 +2,8 @@ import cloudinary from "@/lib/cloudinary";
 import { CloudinaryResponse } from "@/lib/cloudinaryResponse";
 import { NextRequest, NextResponse } from "next/server";
 import * as streamifier from "streamifier";
+import sharp from "sharp";
+
 export async function POST(nextRequest: NextRequest) {
   try {
     const body = await nextRequest.formData();
@@ -11,7 +13,12 @@ export async function POST(nextRequest: NextRequest) {
       return new Response("No file provided", { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const buffer_any = Buffer.from(await file.arrayBuffer());
+
+    const buffer = await sharp(buffer_any).webp().toBuffer();
+
+
+
     const res = await new Promise<CloudinaryResponse>((res, rec) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         (error, result) => {

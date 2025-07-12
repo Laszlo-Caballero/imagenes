@@ -24,6 +24,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.58.1",
+    "sharp": "^0.34.3",
     "sonner": "^2.0.5",
     "streamifier": "^0.1.1",
     "tailwind-merge": "^3.3.1",
