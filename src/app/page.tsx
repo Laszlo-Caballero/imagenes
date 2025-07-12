@@ -34,7 +34,7 @@ export default async function Home() {
               <CardHeader>
                 <div className="flex items-center gap-x-2">
                   <p className="text-black">Copiar</p>
-                  <Click url={image.url} />
+                  <Click url={image.secure_url} />
                 </div>
               </CardHeader>
 
